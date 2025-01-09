@@ -6,7 +6,6 @@ import os
 import sys
 import errno
 import gzip
-import random
 import tarfile
 
 from six.moves import urllib
@@ -15,6 +14,8 @@ from six.moves import xrange
 import numpy as np
 import tensorflow as tf
 import matplotlib
+import secrets
+
 # Circumvent error when X11 forwarding is not available
 if 'DISPLAY' not in os.environ: matplotlib.use('Pdf')
 import matplotlib.pyplot as plt
@@ -23,7 +24,7 @@ def random_string(n):
     """Generates a random alphanumeric (lower case only) string of length n."""
     if n < 0:
         return ''
-    return ''.join(random.choice('0123456789abcdefghijklmnopqrstuvwxyz') 
+    return ''.join(secrets.choice('0123456789abcdefghijklmnopqrstuvwxyz') 
         for i in range(n))
 
 def maybe_download(config, filename, extract=False):
